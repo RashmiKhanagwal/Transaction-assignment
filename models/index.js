@@ -1,5 +1,5 @@
 const dbConfig = require("../config/dbConfig");
-const {Sequelize} = require('sequelize');
+const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
     dbConfig.DB,
@@ -29,13 +29,13 @@ sequelize.authenticate()
 
 const db = {}
 
-db.Sequelize = Sequelize
-db.sequelize = sequelize
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-db.users = require('./user')(sequelize, DataTypes)
-db.transactions = require('./transaction')(sequelize, DataTypes)
+db.users = require('../models/user')(sequelize, Sequelize);
+db.transactions = require('../models/transaction')(sequelize, Sequelize);
 
-db.sequelize.sync({ force: false })
+db.sequelize.sync({ force: true })
 .then(() => {
     console.log('yes re-sync done!')
 });
