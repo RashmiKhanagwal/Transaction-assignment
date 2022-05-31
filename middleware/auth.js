@@ -18,3 +18,9 @@ verifyToken = (req, res, next) => {
         next();
     });
 };
+
+const authJWt = {
+    verifyToken: this.verifyToken
+};
+
+module.exports = authJWt;
